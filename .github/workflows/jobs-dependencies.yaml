@@ -1,0 +1,25 @@
+name: Testing jobs dependencies
+
+on:
+    workflow_dispatch:
+
+jobs:
+    job1:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo "First job created to run in paralel with job2"
+    job2:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo "This is job2 and should execute in paralel with job1"
+    job3:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo "This job has a depepndency in job1 and job2 ans should start only after it's dependencies have finished"
+        needs:
+            - job1
+            - job2
+    job4:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo "Final job that has dependencies in job2 and job3 so it should only start after all others jobs have finished"
