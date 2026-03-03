@@ -23,3 +23,6 @@ jobs:
         runs-on: ubuntu-24.04
         steps:
             - run: echo "Final job that has dependencies in job2 and job3 so it should only start after all others jobs have finished"
+        needs:
+            - job2
+            - job3
