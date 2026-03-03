@@ -1,0 +1,14 @@
+name: Workflow triggered by PR
+
+on:
+    pull_request: 
+        types:
+            - opened
+            - synchronize
+            - reopened
+
+jobs:
+    job1:
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo "Triggerd by a PR"
